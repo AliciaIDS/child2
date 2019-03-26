@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="children2-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <Children2Component visible = [[visible]]><slot></slot></Children2Component>
+  </template>
+
+  <script>
+    /**
+     * `children2-component`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class Children2Component extends Polymer.Element {
+      static get is() { return 'children2-component'; }
+      static get properties() {
+        return {
+          visible: {
+            type: String,
+            value: 'true'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(Children2Component.is, Children2Component);
+  </script>
+</dom-module>
