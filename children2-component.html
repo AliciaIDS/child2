@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
 
 <dom-module id="children2-component">
   <template>
@@ -7,7 +8,29 @@
         display: block;
       }
     </style>
-    <Children2Component visible = [[visible]]><slot></slot></Children2Component>
+    <slot>
+      <template is="dom-if" if="[[hasList]]">
+        <ul>
+          <li>Lista</li>
+          <li>uno</li>
+          <li>dos</li>
+          <li>tres</li>
+        </ul>
+      </template>
+
+      <template is="dom-if" if="[[hasTable]]">
+        <table>
+          <tr>
+            <th>Columna1</th>
+            <th>Columna2</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+          </tr>
+        </table>
+      </template>
+    </slot>
   </template>
 
   <script>
@@ -23,9 +46,13 @@
       static get is() { return 'children2-component'; }
       static get properties() {
         return {
-          visible: {
-            type: String,
-            value: 'true'
+          hasList: {
+            type: Boolean,
+            value: false
+          },
+          hasTable:{
+            type: Boolean,
+            value: false
           }
         };
       }
